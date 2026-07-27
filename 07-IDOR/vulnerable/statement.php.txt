@@ -1,0 +1,46 @@
+<?php
+
+require 'db.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$id = $_GET['id'] ?? '';
+
+$stmt = $pdo->prepare("SELECT * FROM statements WHERE id = ?");
+$stmt->execute([$id]);
+
+$statement = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$statement) {
+    die("Statement not found.");
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bank Statement</title>
+</head>
+
+<body>
+
+<h2>Bank Statement</h2>
+
+<p><strong>Account Name:</strong>
+<?= htmlspecialchars($statement['account_name']) ?>
+</p>
+
+<p><strong>Balance:</strong>
+£<?= number_format($statement['balance'],2) ?>
+</p>
+
+<br>
+
+<a href="dashboard.php">Back</a>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+<?php
+
+session_start();
+
+$pdo = new PDO(
+    "mysql:host=localhost;dbname=idor_lab",
+    "root",
+    ""
+);
+
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

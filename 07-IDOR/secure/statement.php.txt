@@ -1,0 +1,63 @@
+<?php
+
+require 'db.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$id = $_GET['id'] ?? '';
+
+$stmt = $pdo->prepare("
+SELECT *
+FROM statements
+WHERE id = ?
+AND user_id = ?
+");
+
+$stmt->execute([
+    $id,
+    $_SESSION['user_id']
+]);
+
+$statement = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$statement) {
+    die("Access denied.");
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bank Statement</title>
+</head>
+
+<body>
+
+<h2>Bank Statement</h2>
+
+<p>
+
+<strong>Account Name:</strong>
+
+<?= htmlspecialchars($statement['account_name']) ?>
+
+</p>
+
+<p>
+
+<strong>Balance:</strong>
+
+£<?= number_format($statement['balance'],2) ?>
+
+</p>
+
+<br>
+
+<a href="dashboard.php">Back</a>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?php
+
+require 'db.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+<h2>Welcome <?= htmlspecialchars($_SESSION['username']) ?></h2>
+
+<p>
+Select your bank statement.
+</p>
+
+<ul>
+
+<li><a href="statement.php?id=1">Statement 1</a></li>
+
+<li><a href="statement.php?id=2">Statement 2</a></li>
+
+</ul>
+
+<br>
+
+<a href="logout.php">Logout</a>
+
+</body>
+</html>

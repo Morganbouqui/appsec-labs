@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS idor_lab;
+USE idor_lab;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE statements (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    account_name VARCHAR(100),
+    balance DECIMAL(10,2),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+INSERT INTO users(username,password) VALUES
+('alice','password123'),
+('bob','password123');
+
+INSERT INTO statements(user_id,account_name,balance) VALUES
+(1,'Alice Johnson',8500.00),
+(2,'Bob Smith',12000.00);
