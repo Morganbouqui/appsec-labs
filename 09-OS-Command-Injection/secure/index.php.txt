@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Ping Utility</title>
+</head>
+<body>
+
+<h2>Ping Utility (Secure)</h2>
+
+<p>Select an approved host.</p>
+
+<form action="ping.php" method="GET">
+
+    <select name="host">
+
+        <option value="8.8.8.8">Google DNS</option>
+
+        <option value="1.1.1.1">Cloudflare DNS</option>
+
+        <option value="8.8.4.4">Google DNS Secondary</option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Ping Host
+    </button>
+
+</form>
+
+</body>
+</html>

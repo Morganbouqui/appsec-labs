@@ -1,0 +1,44 @@
+<?php
+
+$host = $_GET['host'] ?? '';
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ping Result</title>
+</head>
+
+<body>
+
+<h2>Ping Result</h2>
+
+<pre>
+
+<?php
+
+if (!empty($host)) {
+
+    if (PHP_OS_FAMILY === 'Windows') {
+
+        system("ping -n 4 " . $host);
+
+    } else {
+
+        system("ping -c 4 " . $host);
+
+    }
+
+}
+
+?>
+
+</pre>
+
+<br>
+
+<a href="index.php">Try Another Host</a>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OS Command Injection Lab</title>
+</head>
+<body>
+
+<h2>Ping Utility (Vulnerable)</h2>
+
+<p>Enter an IP address or hostname.</p>
+
+<form action="ping.php" method="GET">
+
+    <input
+        type="text"
+        name="host"
+        placeholder="e.g. 8.8.8.8"
+        required
+    >
+
+    <br><br>
+
+    <button type="submit">
+        Ping Host
+    </button>
+
+</form>
+
+</body>
+</html>
