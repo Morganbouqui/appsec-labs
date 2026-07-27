@@ -1,0 +1,38 @@
+CREATE DATABASE auth_lab;
+
+USE auth_lab;
+
+CREATE TABLE users (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    username VARCHAR(50) NOT NULL UNIQUE,
+
+    password VARCHAR(255) NOT NULL
+
+);
+
+/*
+|--------------------------------------------------------------------------
+| Password
+|--------------------------------------------------------------------------
+|
+| Both users use:
+|
+| password123
+|
+| The values below are example password_hash() outputs.
+| Your generated hashes may differ.
+|
+*/
+
+INSERT INTO users (username, password)
+VALUES
+(
+    'alice',
+    '$2y$10$0n1Jd4UQ8Qd5z5Qh9l8T7elAqL4vLr3Y0Qk7Q0jX9i2k8zQ5V5A3G'
+),
+(
+    'bob',
+    '$2y$10$7f8QJdD2jP4fJ8QmM7kV6eK2xY9oT4aP3nB8rS5uL1gW0xH6N9mTy'
+);

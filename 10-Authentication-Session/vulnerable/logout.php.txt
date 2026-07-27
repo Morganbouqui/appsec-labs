@@ -1,0 +1,16 @@
+<?php
+
+session_start();
+
+
+//--------------------------------------------------------------------------
+|
+| Only destroys the session.
+| The session cookie is not invalidated.
+|.........................................................................//
+
+
+session_destroy();
+
+header("Location: login.php");
+exit;
