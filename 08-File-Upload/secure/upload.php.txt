@@ -1,0 +1,70 @@
+<?php
+
+$uploadDir = "uploads/";
+
+// Maximum file size (2 MB)
+$maxFileSize = 2 * 1024 * 1024;
+
+// Allowed file extensions
+$allowedExtensions = [
+    'jpg',
+    'jpeg',
+    'png',
+    'gif'
+];
+
+// Allowed MIME types
+$allowedMimeTypes = [
+    'image/jpeg',
+    'image/png',
+    'image/gif'
+];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
+
+    // Check upload errors
+    if ($_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+        exit("Upload failed.");
+    }
+
+    // Check file size
+    if ($_FILES['file']['size'] > $maxFileSize) {
+        exit("File is too large.");
+    }
+
+    // Check file extension
+    $extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+
+    if (!in_array($extension, $allowedExtensions, true)) {
+        exit("Invalid file extension.");
+    }
+
+    // Check MIME type using finfo
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mime = finfo_file($finfo, $_FILES['file']['tmp_name']);
+    finfo_close($finfo);
+
+    if (!in_array($mime, $allowedMimeTypes, true)) {
+        exit("Invalid file type.");
+    }
+
+    // Generate a random filename
+    $newFilename = bin2hex(random_bytes(16)) . "." . $extension;
+
+    $destination = $uploadDir . $newFilename;
+
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
+
+        echo "<h2>Upload Successful</h2>";
+
+        echo "<p>Your image has been uploaded securely.</p>";
+
+        echo "<p>Stored as: <strong>" . htmlspecialchars($newFilename) . "</strong></p>";
+
+    } else {
+
+        echo "Upload failed.";
+
+    }
+
+}

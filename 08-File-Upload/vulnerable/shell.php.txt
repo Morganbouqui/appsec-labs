@@ -1,0 +1,7 @@
+<?php
+
+echo "<h2>Remote Code Execution Demonstration</h2>";
+
+echo "<p>If this file executes after being uploaded, the server is treating uploaded PHP files as executable code.</p>";
+
+echo "<p>This demonstrates why unrestricted file uploads are dangerous.</p>";

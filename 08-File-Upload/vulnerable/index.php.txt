@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unrestricted File Upload Lab</title>
+</head>
+<body>
+
+<h2>Upload Profile Picture (Vulnerable)</h2>
+
+<form action="upload.php" method="POST" enctype="multipart/form-data">
+
+    <input type="file" name="file" required>
+
+    <br><br>
+
+    <button type="submit">Upload</button>
+
+</form>
+
+</body>
+</html>

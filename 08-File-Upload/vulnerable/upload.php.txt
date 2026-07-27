@@ -1,0 +1,25 @@
+<?php
+
+$uploadDir = "uploads/";
+
+if (isset($_FILES['file'])) {
+
+    $filename = basename($_FILES['file']['name']);
+
+    $target = $uploadDir . $filename;
+
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+
+        echo "<h3>Upload Successful!</h3>";
+
+        echo "File uploaded to:<br><br>";
+
+        echo "<a href='$target'>$target</a>";
+
+    } else {
+
+        echo "Upload failed.";
+
+    }
+
+}
