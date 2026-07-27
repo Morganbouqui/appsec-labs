@@ -1,0 +1,53 @@
+<?php
+
+require 'db.php';
+
+if (!isset($_SESSION['logged_in'])) {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $recipient = $_POST['recipient'];
+
+    $amount = (int) $_POST['amount'];
+
+    $_SESSION['balance'] -= $amount;
+
+    echo "<h2>Transfer Successful</h2>";
+
+    echo "Sent £" . $amount . " to ";
+
+    echo htmlspecialchars($recipient);
+
+    exit;
+}
+
+?>
+
+<h2>Transfer Money</h2>
+
+<form method="POST">
+
+Recipient:<br>
+
+<input name="recipient">
+
+<br><br>
+
+Amount:<br>
+
+<input
+    type="number"
+    name="amount">
+
+<br><br>
+
+<button>
+
+Transfer
+
+</button>
+
+</form>
