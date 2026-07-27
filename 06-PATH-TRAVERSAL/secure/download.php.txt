@@ -1,0 +1,20 @@
+<?php
+
+$allowed = [
+    "public.txt",
+    "welcome.txt"
+];
+
+$file = $_GET['file'] ?? '';
+
+if (!in_array($file, $allowed, true)) {
+    exit("Invalid file.");
+}
+
+$path = "documents/" . $file;
+
+if (file_exists($path)) {
+    readfile($path);
+} else {
+    echo "File not found.";
+}

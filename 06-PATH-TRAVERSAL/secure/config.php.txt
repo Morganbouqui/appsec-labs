@@ -1,0 +1,8 @@
+<?php
+
+$dbHost = "localhost";
+$dbUser = "security_user";
+$dbPass = "VerySecretPassword";
+$dbName = "quicktradebank";
+
+echo "Configuration File";

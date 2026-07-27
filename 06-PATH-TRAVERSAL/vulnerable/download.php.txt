@@ -1,0 +1,11 @@
+<?php
+
+$file = $_GET['file'] ?? '';
+
+$path = "documents/" . $file;
+
+if (file_exists($path)) {
+    readfile($path);
+} else {
+    echo "File not found.";
+}
